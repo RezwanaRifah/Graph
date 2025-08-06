@@ -19,6 +19,9 @@ int main(){
 	}
 	
 	int visited[n][m];
+	int dx[4] = {1, 0, -1, 0};
+	int dy[4] = {0, 1, 0, -1};
+
 	memset(visited, 0, sizeof visited);
 	
 	int count = 0;
@@ -43,32 +46,44 @@ int main(){
 				int x = u.first;
 				int y = u.second;
 				
-				if(x-1 >= 0){
-					if(grid[x-1][y] == '.' && visited[x-1][y] == 0){
-						q.push({x-1,y});
-						visited[x-1][y]= 1;
-					}
-				}
-				if(y+1 < m){
-					if(grid[x][y + 1] == '.' && visited[x][y + 1] == 0){
-						q.push({x,y + 1});
-						visited[x][y + 1]= 1;
-					}
-				}
-				
-				if(x + 1 < n){
-					if(grid[x + 1][y] == '.' && visited[x + 1][y] == 0){
-						q.push({x + 1,y});
-						visited[x + 1][y]= 1;
+				for(int k = 0; k < 4; k++){
+					int r = x + dx[k];
+					int c = y + dy[k];
+					
+					if(r >= 0 && r < n && c >= 0 && c < m){
+						if(grid[r][c] == '.' && visited[r][c] == 0){
+							q.push({r,c});
+							visited[r][c] = 1;
+						}
 					}
 				}
 				
-				if(y-1 >= 0){
-					if(grid[x][y-1] == '.' && visited[x][y-1] == 0){
-						q.push({x,y-1});
-						visited[x][y-1]= 1;
-					}
-				}
+				// if(x-1 >= 0){
+					// if(grid[x-1][y] == '.' && visited[x-1][y] == 0){
+						// q.push({x-1,y});
+						// visited[x-1][y]= 1;
+					// }
+				// }
+				// if(y+1 < m){
+					// if(grid[x][y + 1] == '.' && visited[x][y + 1] == 0){
+						// q.push({x,y + 1});
+						// visited[x][y + 1]= 1;
+					// }
+				// }
+// 				
+				// if(x + 1 < n){
+					// if(grid[x + 1][y] == '.' && visited[x + 1][y] == 0){
+						// q.push({x + 1,y});
+						// visited[x + 1][y]= 1;
+					// }
+				// }
+// 				
+				// if(y-1 >= 0){
+					// if(grid[x][y-1] == '.' && visited[x][y-1] == 0){
+						// q.push({x,y-1});
+						// visited[x][y-1]= 1;
+					// }
+				// }
 				
 				
 			}
